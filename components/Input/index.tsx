@@ -1,30 +1,33 @@
+import {StyleSheet, Text, TextInput} from 'react-native';
 import React from 'react';
-import { TextInput, StyleSheet, View } from 'react-native';
 
-const Input = ({ placeholder, keyboardType, value, onChangeText }) => {
+const Input = ({label, placeholder, onChangeText, ...rest}) => {
   return (
-    <View style={styles.inputContainer}>
+    <>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        keyboardType={keyboardType || 'default'}
-        value={value}
         onChangeText={onChangeText}
+        {...rest}
       />
-    </View>
+    </>
   );
 };
 
+export default Input;
+
 const styles = StyleSheet.create({
-  inputContainer: {
-    marginVertical: 10,
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'black',
+    borderRadius: 10,
+    marginTop: 10,
     padding: 10,
-    borderRadius: 5,
   },
 });
-
-export default Input;

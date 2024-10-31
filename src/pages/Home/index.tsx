@@ -29,12 +29,12 @@ export default function MoneyTracker({navigation}) {
         <Text style={styles.transactionTitle}>Add Transaction</Text>
         <Button
           text="Cash On Hand"
-          onPress={() => navigation.navigate('Transaction')}
+          onPress={() => navigation.navigate('CashonHand')}
         />
         <Gap height={26} />
         <Button
           text="Cash On Bank"
-          onPress={() => navigation.navigate('Transaction1')}
+          onPress={() => navigation.navigate('CashonBank')}
         />
       </View>
     </View>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     height: 1.5,
     backgroundColor: '#000000',
     marginVertical: 8,
-    marginTop: 15,
+    marginTop: 1,
   },
   labelOn: {
     fontSize: 16,
