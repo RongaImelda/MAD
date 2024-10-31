@@ -1,65 +1,29 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import {Header, TextInput} from '../../components/molecules';
+import {Button, Gap} from '../../components/atoms';
 
-const SignUp = ({ navigation }) => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [profilePhoto, setProfilePhoto] = useState(null);
-
-  const selectPhoto = () => {
-    const options = {
-      noData: true,
-    };
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.uri) {
-        setProfilePhoto(response);
-      }
-    });
-  };
-
+const SignIn = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.backButton}>← Back</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.title}>Sign Up</Text>
-
-      <TouchableOpacity onPress={selectPhoto}>
-        <View style={styles.photoContainer}>
-          {profilePhoto ? (
-            <Image source={{ uri: profilePhoto.uri }} style={styles.photo} />
-          ) : (
-            <Text style={styles.addPhotoText}>Add Photo</Text>
-          )}
-        </View>
-      </TouchableOpacity>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Type your full name"
-        value={fullName}
-        onChangeText={setFullName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Type your email address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Type your password"
-        value={password}
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-
-      <TouchableOpacity style={styles.continueButton} onPress={() => console.log('Sign Up pressed')}>
-        <Text style={styles.continueButtonText}>Continue</Text>
-      </TouchableOpacity>
+      <Header text="Sign in" />
+      <View style={styles.contentWrapper}>
+        <TextInput
+          label="Email Address"
+          placeholder="Type your email address"
+        />
+        <Gap height={16} />
+        <TextInput label="Password" placeholder="Type your password" />
+        <Gap height={24} />
+        <Button text="Sign In" onPress={() => navigation.navigate('Home')} />
+        <Gap height={12} />
+        <Button
+          text="Create New Account"
+          color="#8D92A3"
+          textColor="#FFFFFF"
+          onPress={() => navigation.navigate('SignUp')}
+        />
+      </View>
     </View>
   );
 };
@@ -67,57 +31,13 @@ const SignUp = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
   },
-  backButton: {
-    fontSize: 18,
-    color: '#000',
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  photoContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: '#f0f0f0',
-    marginBottom: 30,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderStyle: 'dashed',
-  },
-  addPhotoText: {
-    color: '#bbb',
-  },
-  photo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
-  input: {
-    height: 50,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 20,
-  },
-  continueButton: {
-    backgroundColor: '#00C853',
-    paddingVertical: 15,
-    borderRadius: 10,
-  },
-  continueButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
+  contentWrapper: {
+    marginTop: 24,
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 24,
+    paddingTop: 25,
   },
 });
-
-export default SignUp;
+export default SignIn;
