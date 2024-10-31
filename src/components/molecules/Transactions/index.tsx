@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Transaction = ({date, desc, price, type}) => {
+const Transactions = ({date, desc, price, type}) => {
   return (
     <View style={styles.cardTransaction}>
       <View>
@@ -18,7 +18,7 @@ const Transaction = ({date, desc, price, type}) => {
   );
 };
 
-export default Transaction;
+export default Transactions;
 
 const styles = StyleSheet.create({
   cardTransaction: {
